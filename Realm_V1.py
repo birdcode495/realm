@@ -1,3 +1,14 @@
+print()
+print()
+print()
+print()
+
+print(' ------------------------------------------------  WELCOME TO REALM VERSION 1 ------------------------------------------------------------------')
+
+
+
+
+
 import tkinter as tk
 
 from tkinter import *   # --- Graphical User Interface (GUI) Construction with the Tkinter library
@@ -41,7 +52,43 @@ BirdGuess_chinese_k = BirdGuess_chinese
 
 BirdGuess_pinyin_k = BirdGuess_pinyin
 
+print()
+print()
+print()
 
+
+print('                                                           WELCOME TO REALM              ')
+print()
+print('                                 A SERIOUS GAME TO GUESS THE COLOMBIAN BIRDS NAMES IN MANDARIN CHINESE')
+print()               
+print('                                                     	CHARACTER BY CHARACTER ')
+print()
+print()
+print()
+print('                                                         So, lets give it a try ')
+
+print()
+print()
+print()
+print('    -----------------------------------------------------------------------------------------------------------------------------------------------')
+
+
+
+
+
+
+
+time.sleep(2)
+
+welcome = 'Welcome.mp3'
+
+caracara = 'Caracara chimachima.wav'
+
+playsound(caracara)
+
+time.sleep(5)
+
+playsound(welcome)
 
 index = 890
 y = [0, 18, 84, 85]
@@ -118,6 +165,8 @@ End = False
 
 hit_sound = 'Hit.wav'
 wrong_sound = 'wrong.mp3'
+congratulations_message = 'Congratulations.mp3'
+diamond_message = 'Diamond.mp3'
 
 def Juego():
 
@@ -150,10 +199,50 @@ def Juego():
 
 		x = x + 1
 
+print()
+print()
+
 print(BirdGue)
 print(BirdGuess_pinyin[index])
 
 Juego()
+
+
+# ---------------------------------------- Badges --------------------------------------------------------------
+
+
+def diamond():
+
+	def Close():
+
+		root_diamond.destroy()
+
+
+
+	root_diamond = tk.Tk()
+
+	root_diamond.title("Badge: Diamond")
+
+	root_diamond.geometry("600x400")
+
+	root_diamond.iconbitmap()
+
+	miFrame_diamond = Frame(root_diamond)
+
+	miFrame_diamond.pack()
+
+	miImage_diamond = PhotoImage(file = "Diamond_image_v4.png")
+
+	Label(miFrame_diamond, image = miImage_diamond).pack()
+
+	
+
+	CloseWindow = tk.Button(root_diamond, text = "Understood", font = ("Comic Sans MS", 13), command = lambda:Close())
+	CloseWindow.config(fg = "#0f10be")
+	CloseWindow.place(x = 450, y = 300)
+		
+	root_diamond.mainloop()
+
 
 
 while End == False and lifes > 0:
@@ -168,8 +257,15 @@ while End == False and lifes > 0:
 	elif hits == len(BirdGue):
 
 		print()
-		print('Congratulations!!!!')
-		#time.sleep(5)
+		print('Congratulations. You have won a Diamond !!!!')
+		print()
+		print()
+		time.sleep(2)
+		playsound(congratulations_message)
+		time.sleep(1)
+		playsound(diamond_message)
+		time.sleep(2)
+		diamond()
 
 		del BirdGuess_list_k[index]
 		del BirdGuess_english_k[index]
@@ -188,12 +284,14 @@ while End == False and lifes > 0:
 	elif hits >= len(BirdGue) / 2 and hits < len(BirdGue):
 
 		print()
-		print('Pasa')
+		print('You have won a coin !!!!!!')
+		print()
 		del BirdGuess_list_k[index]
 		del BirdGuess_english_k[index]
 		del BirdGuess_chinese_k[index]
 		del BirdGuess_pinyin_k[index]
 		coins = coins + 1
+		time.sleep(4)
 		IndexCreation()
 		GUI_Creation()
 		#time.sleep(2)
@@ -205,12 +303,14 @@ while End == False and lifes > 0:
 	elif hits < len(BirdGue) / 2:
 
 		print()
-		print('No')
+		print('You have lost one life')
+		print()
 		del BirdGuess_list_k[index]
 		del BirdGuess_english_k[index]
 		del BirdGuess_chinese_k[index]
 		del BirdGuess_pinyin_k[index]
 		lifes = lifes - 1
+		time.sleep(4)
 		IndexCreation()
 		GUI_Creation()
 		#time.sleep(2)
