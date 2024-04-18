@@ -42,7 +42,7 @@ BirdGuess_pinyin_k = BirdGuess_pinyin
 
 
 index = 890
-y = [0, 5, 19]
+y = [0, 18, 84, 85]
 z = 0
 
 
@@ -58,29 +58,21 @@ def IndexCreation():
 		#z = z + 1
 		del y[z]
 
-	else:
+	elif z == len(y):
 		print('fin')
 
 	 
-
-
-	
-
-
-
 	#index = random.randint(0, len(BirdGuess_list_k) - 1)
 
 	#index = random.randint(0, 5)
 	
 
-
-	
-
-
 IndexCreation()
 
 
 def GUI_Creation():
+
+	global y 
 
 	raiz = Tk()
 
@@ -128,6 +120,11 @@ def Juego():
 
 	global x 
 	global hits
+	global BirdGue
+
+	BirdGue = BirdGuess_chinese_k[index]
+
+
 
 	while x <= len(BirdGue) - 1:
 
@@ -150,21 +147,28 @@ print(BirdGuess_pinyin[index])
 Juego()
 
 
-while End == False or lifes > 0:
+while End == False and lifes > 0:
 
-	if hits == len(BirdGue):
+	if len(y) == 0:
+
+		print('End of the game')
+		End == True
+		break
+
+	elif hits == len(BirdGue):
 
 		print('Congratulations!!!!')
-		time.sleep(5)
+		#time.sleep(5)
 
 		del BirdGuess_list_k[index]
 		del BirdGuess_english_k[index]
 		del BirdGuess_chinese_k[index]
+		del BirdGuess_pinyin_k[index]
 		diamonds = diamonds + 1
 		coins = coins + 1
 		IndexCreation()
 		GUI_Creation()
-		time.sleep(2)
+		#time.sleep(2)
 		x = 0
 		hits = 0
 		Juego()
@@ -176,7 +180,7 @@ while End == False or lifes > 0:
 		coins = coins + 1
 		IndexCreation()
 		GUI_Creation()
-		time.sleep(2)
+		#time.sleep(2)
 		x = 0
 		hits = 0
 		Juego()
@@ -187,7 +191,13 @@ while End == False or lifes > 0:
 		lifes = lifes - 1
 		IndexCreation()
 		GUI_Creation()
-		time.sleep(2)
+		#time.sleep(2)
 		x = 0
 		hits = 0
 		Juego()
+
+	
+
+	
+
+
